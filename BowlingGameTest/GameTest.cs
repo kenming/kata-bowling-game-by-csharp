@@ -67,6 +67,29 @@ namespace kata.game.test
             g.roll(5);
         }
 
+        [TestMethod]
+        // 測試玩家整局只有一次全中+次一計分格兩次投球的分數
+        // 共 19 次投球機會，其餘 16 次皆0分
+        public void testOneStrike()
+        {
+            int expected = 24;
+            int actual;
+
+            this.rollStrike();
+	        g.roll(3);
+	        g.roll(4);
+
+            this.rollMany(16, 0);
+            actual = g.score();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        private void rollStrike()
+        {
+            g.roll(10);
+        }
+
         private void rollMany(int n, int pins)
         {
             for (int i = 0; i < n; i++)
