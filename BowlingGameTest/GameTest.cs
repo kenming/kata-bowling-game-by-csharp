@@ -10,7 +10,8 @@ namespace kata.game.test
         private Game g;     // 宣告參考變數，指向 Game instance
 
         [TestInitialize]
-        public void setup() {
+        public void setup()
+        {
             g = new Game();
         }
 
@@ -20,14 +21,32 @@ namespace kata.game.test
             int expected = 0;   // 期望結果值
             int actual;         // 實際結果值
 
-            for (int i = 0; i < 20; i++)
-            {
-                g.roll(0);
-            }
+            this.rollMany(20, 0);
             actual = g.score();
 
             // 斷言比對
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        // 測試玩家投球共20次，每次都只得一分時的總得分數
+        // 期望結果值：20	
+        public void testAllOnes()
+        {
+            int expected = 20;
+            int actual;
+
+            this.rollMany(20, 1);
+            actual = g.score();
+
+            // 斷言比對
+            Assert.AreEqual(expected, actual);
+        }
+
+        private void rollMany(int n, int pins)
+        {
+            for (int i = 0; i < n; i++)
+                g.roll(pins);
         }
     }
 }
