@@ -12,7 +12,7 @@ namespace kata.game
         
         public int score()              // 計分
         {
-            return -1;
+            return 0;
         }
     }
 }
