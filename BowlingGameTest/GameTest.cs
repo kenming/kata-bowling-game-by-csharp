@@ -43,6 +43,30 @@ namespace kata.game.test
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        // 測試玩家整局只有一次補中+次一計分格投球的分數
+        // 共 20 次投球機會，其餘 17 次皆0分
+        public void testOneSpare()
+        {
+
+            int expected = 16;
+            int actual;
+
+            this.rollSPare();
+	        g.roll(3);
+	        this.rollMany(17,0); //其餘17次投球皆0分
+            actual = g.score();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        private void rollSPare()
+        {
+            g.roll(5);
+            g.roll(5);
+        }
+
         private void rollMany(int n, int pins)
         {
             for (int i = 0; i < n; i++)
