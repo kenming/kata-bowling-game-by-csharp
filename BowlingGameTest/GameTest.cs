@@ -90,6 +90,19 @@ namespace kata.game.test
             g.roll(10);
         }
 
+        [TestMethod]
+        // 測試玩家在所有全倒的12次投球的總得分數 (滿分300分)
+        public void testPerfectGame()
+        {
+            int expected = 300;
+            int actual;
+
+            this.rollMany(12,10);
+            actual = g.score();
+
+            Assert.AreEqual(expected, actual);
+        }
+
         private void rollMany(int n, int pins)
         {
             for (int i = 0; i < n; i++)
